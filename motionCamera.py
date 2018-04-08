@@ -13,6 +13,10 @@ GPIO.setup(PIR_PIN, GPIO.IN)
 camera = PiCamera()
 firebase = firebase.FirebaseApplication('https://pisec-662475.firebaseio.com/')
 
+Token = firebase.get('/Token', None)
+
+print Token
+
 
 def MOTION(PIR_PIN):
     for x in xrange(1, 3, 1):
@@ -29,7 +33,7 @@ def MOTION(PIR_PIN):
 def pushNotification():
     push_service = FCMNotification(
         api_key="AAAATLrII80:APA91bFUNORsR6DydimlmLF1czI3xKt-yVHhwVK0i22s1B-e1ggNszmaZB29f2ACwJhn7xdiLIWMQG5DNZbZxcuIyuEQ37IStxJivtHttRovz3I6W_ldvkNlvXfnbz9j6IFIcdPLZ_Dm")
-    registration_id = "eZBi5oJvcJI:APA91bE_VPHC8NOXFzwkNttdVrRujCQJZKnHmTqQGUMcc96_l7oB2NWlkzpwnGORfv6MGsEKGG6ov68mvWfeQaYF6B14sctu7e9x1JakBGBrPBSAANU2U2zLT_O0pGNV0mPaeFEnp8CN"
+    registration_id = Token
     message_title = 'Motion Detected!'
     message_body = 'Motion Detected!'
     sound = 'default'
