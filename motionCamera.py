@@ -14,19 +14,20 @@ PIR_PIN = 4
 GPIO.setup(PIR_PIN, GPIO.IN)
 camera = PiCamera()
 firebase = firebase.FirebaseApplication('https://pisec-662475.firebaseio.com/')
+UID = 'wlQ1tt056jWznyszDGj3cNUo7GD3'
 
-Token = firebase.get('/Token', None)
+Token = firebase.get('users/' + UID + '/token', None)
 
 
 def MOTION(PIR_PIN):
     for x in xrange(1, 3, 1):
         date = datetime.datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
-        directory = "/var/www/html/PiSec Captures/" + date + " Shot %d.jpg" % (x)
-        url = "http://" + my_ip + "/PiSec%20Captures/" + date + " Shot %d.jpg" % (x)
+        directory = "/var/www/html/PiSec Captures/" + date + "_Shot%d.jpg" % (x)
+        url = "http://" + my_ip + "/PiSec%20Captures/" + date + "_Shot%d.jpg" % (x)
         camera.capture(directory)
         print 'Image Captured %d' % (x)
+        firebase.post('users/%s/images' % UID, url)
         time.sleep(1)
-        firebase.post('/images', url)
     pushNotification()
 
 
