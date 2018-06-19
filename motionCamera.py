@@ -33,7 +33,7 @@ def MOTION(PIR_PIN):
 
 def pushNotification():
     push_service = FCMNotification(
-        api_key="AAAATLrII80:APA91bFUNORsR6DydimlmLF1czI3xKt-yVHhwVK0i22s1B-e1ggNszmaZB29f2ACwJhn7xdiLIWMQG5DNZbZxcuIyuEQ37IStxJivtHttRovz3I6W_ldvkNlvXfnbz9j6IFIcdPLZ_Dm")
+        api_key="")
     registration_id = Token
     message_title = 'Motion Detected!'
     message_body = 'View Alert'
